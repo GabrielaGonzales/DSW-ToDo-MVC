@@ -1,7 +1,16 @@
+using ToDoList.Models;
+using ToDoList.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<MongoDBSettings>(
+  builder.Configuration.GetSection("MongodbMVC")
+);
+
+builder.Services.AddSingleton<AssignmentService>();
 
 var app = builder.Build();
 
